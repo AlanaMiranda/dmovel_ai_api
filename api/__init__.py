@@ -63,12 +63,20 @@ def create_api(config_name):
         return JSONResponse(status_code=422, content={"detail": detail})
 
     # Adicionar o middleware CORS
+    # Configuração mais segura para produção
+    allowed_origins = ["*"] if config_name != "production" else [
+        "http://localhost:3000",
+        "http://localhost:8080", 
+        "https://dmovel.com.br",
+        "https://www.dmovel.com.br"
+    ]
+    
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Lista de origens permitidas
+        allow_origins=allowed_origins,
         allow_credentials=True,
-        allow_methods=["*"],  # Permite todos os métodos HTTP
-        allow_headers=["*"],  # Permite todos os headers
+        allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allow_headers=["*"],
     )
 
     # Redireciona a rota raiz (/) para a documentação Swagger (/docs)
