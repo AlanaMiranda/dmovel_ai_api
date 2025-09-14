@@ -1,9 +1,9 @@
-import os
 from api import create_api
+from api.config import settings
 
-# Determinar o ambiente baseado em variável de ambiente
-config_name = os.getenv("ENVIRONMENT", "production")
-port = os.getenv("API_PORT", 8000)
+# Usar configurações centralizadas
+config_name = settings.ENVIRONMENT
+port = settings.API_PORT
 # Criar a aplicação
 app = create_api(config_name)
 

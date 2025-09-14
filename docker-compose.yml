@@ -1,0 +1,41 @@
+services:
+  # API FastAPI - Configuração para Produção
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dmovel-ai-api
+    restart: unless-stopped
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - MODEL_NAME=${MODEL_NAME}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - API_PORT=${API_PORT}
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    networks:
+      - dmovel-shared
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+          cpus: '2.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${API_PORT}/health-check"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  dmovel-shared:
+      driver: bridge
+      name: dmovel-shared
