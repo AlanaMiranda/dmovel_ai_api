@@ -10,4 +10,4 @@ app = create_api(config_name)
 # Para compatibilidade com WSGI
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, port=port) 
+    uvicorn.run(app, port=port)
