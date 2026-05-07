@@ -3,4 +3,7 @@
 .env
 chroma_db/
 test_vs.py
+test_assistant.py
+test_direct.py
+test_key.py
 test_models.py
