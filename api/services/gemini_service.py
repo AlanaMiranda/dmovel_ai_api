@@ -1,5 +1,5 @@
 # services/gemini_service.py
-
+import os
 import logging
 from api.config import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -19,10 +19,10 @@ class GeminiService:
         self.google_api_key = self.settings.GOOGLE_API_KEY
 
         try:
+            os.environ["GOOGLE_API_KEY"] = self.google_api_key
             # Configura o modelo Gemini
             self.llm = ChatGoogleGenerativeAI(
                 model=self.model_name,
-                google_api_key=self.google_api_key,
                 temperature=0.1
             )
         except Exception as e:

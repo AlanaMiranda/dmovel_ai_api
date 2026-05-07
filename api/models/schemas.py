@@ -107,3 +107,11 @@ class ErrorResponse(BaseModel):
         description="Descrição detalhada do erro",
         example="field required: language"
     )
+
+class AssistantRequest(BaseModel):
+    question: str = Field(
+        ..., description="Pergunta do usuário ao assistente virtual", example="Como faço para avaliar um local?"
+    )
+
+class AssistantResponse(BaseModel):
+    answer: str = Field(..., description="Resposta gerada pelo assistente virtual")
