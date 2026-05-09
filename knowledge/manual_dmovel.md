@@ -309,6 +309,9 @@ POI significa "Ponto de Interesse". No DMóvel, são os locais cadastrados pelos
 **Como cadastro um novo local?**
 Acesse a aba Mapa, toque em "Adicionar Local" e preencha as informações: endereço, nome do estabelecimento, categoria, descrição e imagem. Quanto mais detalhada a descrição, mais útil o local se torna para outros usuários.
 
+**Como favorito um local?**
+Na tela Início, acesse o local desejado e toque na opção de favoritar. Os locais favoritados ficam salvos e podem ser filtrados na tela Início usando o filtro "Favoritos".
+
 **Quais categorias de locais posso cadastrar?**
 O DMóvel aceita as seguintes categorias: Lazer, Saúde, Educação, Governo e Outros.
 
