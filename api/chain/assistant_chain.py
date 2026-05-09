@@ -35,7 +35,8 @@ class AssistantChain:
   8. Quando relevante, inclua o passo a passo da funcionalidade.
   9. Não inclua termos originais em português entre parênteses nas respostas em alemão ou inglês. Traduza diretamente sem mostrar o original.
   10. Nunca misture idiomas na mesma resposta.
-  
+  11. Nunca mencione que está consultando um "manual" ou "documento". Responda como se o conhecimento fosse seu, de forma natural.
+
   CONTEÚDO DO MANUAL:
   {context}
   """
