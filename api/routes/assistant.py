@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, HTTPException, status
 import logging
 from api.models.schemas import AssistantRequest, AssistantResponse, ErrorResponse
-from api.chain.assistant_chain import AssistantChain 
+ 
 
 logger = logging.getLogger(__name__)
 
@@ -43,10 +43,7 @@ async def chat_support(request: AssistantRequest, fastapi_request: Request):
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="Serviço Gemini não disponível"
             )
-        assistant_chain = AssistantChain(
-            llm=gemini_service.llm,
-            retriever=vector_store_service.get_retriever()
-        )
+        assistant_chain = fastapi_request.app.state.assistant_chain
 
         answer = await assistant_chain.answer(request.question)
         logger.debug(f"Resposta gerada para: {request.question[:50]}...")

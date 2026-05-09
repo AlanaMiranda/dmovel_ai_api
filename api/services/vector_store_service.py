@@ -22,11 +22,20 @@ class VectorStoreService:
     def build(self):
         """
         Carrega o manual, divide em chuncks e cria o vector store.
-        Executado uma vez na inicialização da aplicação.
+        Se o vector store já existir, carrega o existente em vez de recriar.
         """
         try:
+            if os.path.exists(CHROMA_PATH) and os.listdir(CHROMA_PATH):
+                logger.info("Vector store existente encontrado. Carregando...")
+                self.vector_store = Chroma (
+                    persist_directory=CHROMA_PATH,
+                    embedding_function=self.embeddings
+                )
+                logger.info("Vector store carregado com sucesso.")
+                return
+
             logger.info("Carregando manual do Dmovel...")
-            loader = UnstructuredMarkdownLoader (KNOWLEDGE_PATH)
+            loader = UnstructuredMarkdownLoader(KNOWLEDGE_PATH)
             documents = loader.load()
 
             logger.info("Dividindo em chunks...")

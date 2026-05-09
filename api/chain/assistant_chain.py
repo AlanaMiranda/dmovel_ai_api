@@ -75,4 +75,4 @@ class AssistantChain:
             return result
         except Exception as e:
             logger.error(f"Erro ao gerar resposta: {e}")
-            raise Exception(f"Erro ao processar pergunta: {str(e)}")
+            raise 

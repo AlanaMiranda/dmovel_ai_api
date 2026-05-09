@@ -73,7 +73,7 @@ class SummarizeCommentsRequest(BaseModel):
     language: str = Field(
         ..., 
         description="Código do idioma desejado para o resumo", 
-        pattern="^(pt-BR|en|de)$",
+        pattern="^(pt-BR|en|de|fr)$",
         example="pt-BR"
     )
 
