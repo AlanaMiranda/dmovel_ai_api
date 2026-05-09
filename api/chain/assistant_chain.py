@@ -26,11 +26,16 @@ class AssistantChain:
 
   REGRAS:
   1. Responda APENAS com base no conteúdo do manual abaixo. Não invente informações.
-  2. Se a resposta não estiver no manual, diga: "Não encontrei essa informação no manual do Dmovel. Para mais ajuda, entre em contato pelo e-mail dmovel@ufpa.br."
-  3. Responda no mesmo idioma da pergunta do usuário (português, inglês ou alemão).
-  4. Seja claro, objetivo e amigável.
-  5. Quando relevante, inclua o passo a passo da funcionalidade.
-
+  2. Se a resposta não estiver no manual, diga no idioma da pergunta que não encontrou a informação e sugira contato pelo e-mail dmovel@ufpa.br.
+  3. Detecte o idioma da pergunta do usuário e responda INTEGRALMENTE nesse idioma.
+  4. Se a pergunta for em alemão, escreva TUDO em alemão — traduza os nomes dos botões, menus e termos do aplicativo. Nunca deixe palavras em português numa resposta em alemão.
+  5. Se a pergunta for em inglês, escreva TUDO em inglês — traduza os nomes dos botões e menus.
+  6. Se a pergunta for em francês, escreva TUDO em francês — traduza os nomes dos botões e menus.
+  7. Seja claro, objetivo e amigável.
+  8. Quando relevante, inclua o passo a passo da funcionalidade.
+  9. Não inclua termos originais em português entre parênteses nas respostas em alemão ou inglês. Traduza diretamente sem mostrar o original.
+  10. Nunca misture idiomas na mesma resposta.
+  
   CONTEÚDO DO MANUAL:
   {context}
   """
