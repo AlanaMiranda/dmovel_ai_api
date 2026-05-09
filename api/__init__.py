@@ -6,8 +6,10 @@ from fastapi.responses import RedirectResponse
 import logging
 from contextlib import asynccontextmanager
 
+from api.chain.assistant_chain import AssistantChain
 from api.routes.router import routes
 from api.services.gemini_service import GeminiService
+from api.services.vector_store_service import VectorStoreService
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,16 +19,26 @@ async def lifespan(app: FastAPI):
         app.state.gemini_service = GeminiService()
         app.state.logger.info("GeminiService inicializado com sucesso")
 
+        app.state.vector_store_service = VectorStoreService()
+        app.state.vector_store_service.build()
+        app.state.logger.info("VectorStoreService inicializado com sucesso")
+
+        app.state.assistant_chain = AssistantChain(
+            llm=app.state.gemini_service.llm,
+            retriever=app.state.vector_store_service.get_retriever()
+        )
+        app.state.logger.info("AssistantChain inicializado com sucesso")
+
     except Exception as e:
-        app.state.logger.error(f"Erro ao inicializar pool de conexões: {str(e)}")
+        app.state.logger.error(f"Erro ao inicializar serviços: {str(e)}")
         raise
     
     yield
     
     # Encerramento
-    app.state.logger.info("Encerrando GeminiService")
+    app.state.logger.info("Encerrando serviços")
     app.state.gemini_service.close()
-    app.state.logger.info("GeminiService encerrado")
+    app.state.logger.info("Serviços encerrados")
 
 def create_api(config_name):
 
