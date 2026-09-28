@@ -22,5 +22,5 @@ EXPOSE ${API_PORT}
 
 # Comando para iniciar a aplicação em modo de produção
 # Usar 0.0.0.0 para permitir acesso externo, mas com IPs confiáveis restritos
-CMD ["uvicorn", "wsgi:app", "--host", "0.0.0.0", "--port", "${API_PORT}", "--workers", "4", "--proxy-headers", "--forwarded-allow-ips", "127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"] 
+CMD ["uvicorn", "wsgi:app", "--host", "0.0.0.0", "--port", "${API_PORT}", "--workers", "2", "--proxy-headers", "--forwarded-allow-ips", "127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"] 
 

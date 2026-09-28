@@ -18,11 +18,11 @@ services:
     deploy:
       resources:
         limits:
-          memory: 3G
-          cpus: '2.0'
+          memory: 1.5G
+          cpus: '1.0'
         reservations:
-          memory: 1G
-          cpus: '0.5'
+          memory: 512M
+          cpus: '0.25'
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${API_PORT}/health-check"]
       interval: 30s
