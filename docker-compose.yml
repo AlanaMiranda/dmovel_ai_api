@@ -14,7 +14,7 @@ services:
     ports:
       - "${API_PORT}:${API_PORT}"
     networks:
-      - dmovel-shared
+      - dmovel-prod-network
     deploy:
       resources:
         limits:
@@ -36,6 +36,5 @@ services:
         max-file: "3"
 
 networks:
-  dmovel-shared:
-      driver: bridge
-      name: dmovel-shared
+  dmovel-prod-network:
+    external: true
